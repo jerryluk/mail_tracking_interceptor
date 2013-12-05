@@ -23,7 +23,7 @@ module MailTrackingInterceptor
         message.return_path = field_with_tag(message[:return_path], email_stat.tag)
 
         if message.perform_deliveries
-          email_delivery = EmailDelivery.create!(:email_stat => email_stat)
+          email_delivery = EmailDelivery.create!(:email_stat => email_stat, :subject => message.subject)
           if message.parts.present?
             message.text_part.body = body_with_tracking_code(message.text_part.body, email_delivery.tracking_code) if message.text_part
             message.html_part.body = body_with_tracking_code(message.html_part.body, email_delivery.tracking_code) if message.html_part

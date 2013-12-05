@@ -3,6 +3,7 @@ class CreateEmailDeliveries < ActiveRecord::Migration
     create_table :email_deliveries do |t|
       t.references :email_stat, :null => false
       t.string :tracking_code, :null => false
+      t.string :subject
       t.datetime :read_at
       t.datetime :clicked_at
       t.datetime :created_at
